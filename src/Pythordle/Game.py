@@ -57,6 +57,7 @@ def Run():
 def InvokeWord():
     global CorrectWord
     CorrectWord = TargetWordList[random.randint(0, len(TargetWordList)-1)].upper()
+    CorrectWord = "EGGED"
     for Letter in CorrectWord:
         if Letter in __LetterCountCorrect:
             __LetterCountCorrect[Letter] += 1
@@ -186,24 +187,16 @@ def __DrawGame():
             rl.PlaySound(Constants.InvalidSound)
             return
         
-        # Then check for correct letters
+        # Check for correct position
         for Position, Data in __LetterMatrix.items():
             if not __CurrentPosition[1] == Position[1]: # only check current row
                 continue
+            
             
             if Data.Letter in LetterCountGuess:
                 LetterCountGuess[Data.Letter] += 1
             else:
                 LetterCountGuess[Data.Letter] = 1
-
-            if Data.Letter in CorrectWord and __LetterCountCorrect[Data.Letter] > 0 and LetterCountGuess[Data.Letter] <= __LetterCountCorrect[Data.Letter]:
-                Data.Color = Constants.YellowColor
-                __ColorByLetter[Data.Letter] = Data.Color
-        
-        # Check for correct position
-        for Position, Data in __LetterMatrix.items():
-            if not __CurrentPosition[1] == Position[1]: # only check current row
-                continue
               
             if CorrectWord[Position[0]] == Data.Letter:
                 Data.Color = Constants.GreenColor
@@ -217,6 +210,16 @@ def __DrawGame():
                 Data.Color = rl.DARKGRAY
                 if Data.Letter not in __GlobalGreen:
                     __ColorByLetter[Data.Letter] = Data.Color
+            
+        # Then check for correct letters
+        for Position, Data in __LetterMatrix.items():
+            if not __CurrentPosition[1] == Position[1]: # only check current row
+                continue
+            
+
+            if Data.Letter in CorrectWord and __LetterCountCorrect[Data.Letter] > 0 and LetterCountGuess[Data.Letter] <= __LetterCountCorrect[Data.Letter] and Data.Color != Constants.GreenColor:
+                Data.Color = Constants.YellowColor
+                __ColorByLetter[Data.Letter] = Data.Color
         
         
             
