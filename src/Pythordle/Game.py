@@ -57,7 +57,6 @@ def Run():
 def InvokeWord():
     global CorrectWord
     CorrectWord = TargetWordList[random.randint(0, len(TargetWordList)-1)].upper()
-    CorrectWord = "EGGED"
     for Letter in CorrectWord:
         if Letter in __LetterCountCorrect:
             __LetterCountCorrect[Letter] += 1
