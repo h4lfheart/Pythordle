@@ -19,3 +19,6 @@ def FindOccurance(func, target, default=None):
     if not target:
         return default
     return next(filter(func, target), default)
+
+def Rainbow(speed=1.0):
+    return rl.ColorFromHSV((rl.GetTime() % speed) * (255/speed), 1.0, 1.0)

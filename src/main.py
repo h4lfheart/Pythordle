@@ -1,8 +1,10 @@
 import sys
 from Pythordle import Game
 
-if len(sys.argv) > 1 and sys.argv[1] == '-debug':
+if '-debug' in sys.argv:
     Game.Debug = True
+if '-party' in sys.argv:
+    Game.Party = True
 
 
 Game.Run()

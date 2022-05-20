@@ -7,10 +7,11 @@ import random
 import json
 from Pythordle import Constants
 from Pythordle.Classes import EGameStatus, EMenuType, LetterData
-from Pythordle.Utils import HCenterText, Bounce, DrawBox, FindOccurance
+from Pythordle.Utils import HCenterText, Bounce, DrawBox, FindOccurance, Rainbow
 
 CorrectWord = 'SLING'
 Debug = False
+Party = False
 __LetterCountCorrect = {}
 
 __CurrentMenu = EMenuType.MENU
@@ -40,7 +41,7 @@ def Run():
     
     while not rl.WindowShouldClose():
         rl.BeginDrawing()
-        rl.ClearBackground(Constants.BackgroundColor)
+        rl.ClearBackground(Constants.BackgroundColor if not Party else Rainbow())
         if (__InvalidTimer >= 0):
             __InvalidTimer -= rl.GetFrameTime()
         else:
