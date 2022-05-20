@@ -18,7 +18,6 @@ A Wordle clone created with Python and Raylib for a school project
 * **ENTER** - Confirm word guess
 * **A-Z** - Add letter to guess
 * **BACKSPACE** - Remove letter from guess
-* **HOME** - Take a screenshot of the game
 
 ## Command-Line Args:
 * **-debug** - Shows the current word at the bottom of the screen when playing
